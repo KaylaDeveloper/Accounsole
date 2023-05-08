@@ -1,0 +1,52 @@
+name,type,tax_code,description
+Sales,Revenue,GST on,Income from any normal business activity
+Other Revenue,Revenue,GST on,Any other income that does not relate to normal business activities and is not recurring
+Interest Income,Revenue,GST free,Interest income
+Purchases,Direct Costs,GST on,Cost of goods sold by the business
+Advertising,Expense,GST on,Expenses incurred for advertising while trying to increase sales
+Bank Fees,Expense,GST free,Fees charged by your bank for transactions regarding your bank account(s).
+Cleaning,Expense,GST on,Expenses incurred for cleaning business property.
+Consulting & Accounting,Expense,GST on,Expenses related to paying consultants
+Contractors,Expense,GST on,Expenses paid to contractors.
+Depreciation,Expense,GST free,The amount of the asset's cost (based on the useful life) that was consumed during the period
+Donations,Expense,GST free,Donations made to charities.
+Entertainment,Expense,GST free,Expenses paid by company for the business but are not deductable for income tax purposes.
+Freight & Courier,Expense,GST on,Expenses incurred on courier & freight costs
+General Expenses,Expense,GST on,General expenses related to the running of the business.
+Insurance,Expense,GST on,Expenses incurred for insuring the business' assets
+Interest Expense,Expense,GST free,"Any interest expenses paid to ATO, business bank accounts or credit card accounts."
+Legal expenses,Expense,GST on,Expenses incurred on any legal matters
+"Light, Power, Heating",Expense,GST on,"Expenses incurred for lighting, powering or heating the premises"
+Motor Vehicle Expenses - Fuel,Expense,GST on,Expenses incurred on the running of company motor vehicles
+Motor Vehicle Expenses - Maintenance & Repairs,Expense,GST on,Expenses incurred on the running of company motor vehicles
+Motor Vehicle Expenses - Registration,Expense,GST on,Expenses incurred on the running of company motor vehicles
+Motor Vehicle Expenses - Insurance,Expense,GST on,Expenses incurred on the running of company motor vehicles
+Motor Vehicle Expenses,Expense,GST on,Expenses incurred on the running of company motor vehicles
+Office Expenses,Expense,GST on,General expenses related to the running of the business office.
+Printing & Stationery,Expense,GST on,Expenses incurred by the entity as a result of printing and stationery
+Rent,Expense,GST on,The payment to lease a building or area.
+Repairs and Maintenance,Expense,GST on,Expenses incurred on a damaged or run down asset that will bring the asset back to its original condition.
+Wages and Salaries,Expense,GST free,Payment to employees in exchange for their resources
+Superannuation,Expense,GST free,Superannuation contributions
+Subscriptions,Expense,GST on,"E.g. Magazines, professional bodies."
+Telephone & Internet,Expense,GST on,"Expenditure incurred from any business-related phone calls, phone lines, or internet connections"
+Travel,Expense,GST on,Expenses incurred from domestic travel which has a business purpose
+Income Tax Expense,Expense,GST free,A percentage of total earnings paid to the government.
+Cash in Hand,Current Asset,GST free,The amount of cash that is held by the business
+Accounts Receivable,Current Asset,GST free,Outstanding invoices the company has issued out to the client but has not yet received in cash at balance date.
+Inventory,Inventory,GST free,Value of tracked items for resale.
+Formation Expense,Non-Current Asset,GST on,Costs incurreed in the formation of the business.
+Equipments,Fixed Asset,GST on,Office equipment that is owned and controlled by the business
+Less Accumulated Depreciation on Equipments,Fixed Asset,GST free,The total amount of equipment cost that has been consumed by the business (based on the useful life)
+Motor Vehicle,Fixed Asset,GST on,equipment that is used by the business
+Less Accumulated Depreciation on Motor Vehicle,Fixed Asset,GST free,The total amount of motor vehicle cost that is used by the business (based on the useful life)
+Accounts Payable,Current Liability,GST free,Outstanding invoices the company has received from suppliers but has not yet paid at balance date
+Wages Payable - Payroll,Current Liability,GST free,"Where this account is set as the nominated Wages Payable account within Payroll Settings, Xero allocates the net wage amount of each pay run created using Payroll to this account"
+GST,Current Liability,GST free,"The balance in this account represents GST owing to or from the ATO. At the end of the GST period, it is this account that should be used to code against either the 'refunds from' or 'payments to' the ATO that will appear on the bank statement. Xero has been designed to use only one GST account to track GST on income and expenses, so there is no need to add any new GST accounts to Xero."
+PAYG Withholdings Payable,Current Liability,GST free,The amount of PAYE tax that is due to be paid
+Superannuation Payable,Current Liability,GST free,The amount of superannuation that is due to be paid
+Income Tax Payable,Current Liability,GST free,"The amount of income tax that is due to be paid, also resident withholding tax paid on interest received."
+Owner's Drawings,Equity,GST free,Withdrawals by the owners
+Owner's Capital,Equity,GST free,Funds contributed by the owner
+Loan,Non-current Liability,GST free,Money that has been borrowed from a creditor
+Retained Earnings,Equity,GST free,Do not Use

@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+  migrationsDir = "./migrations"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  hashedPassword  String
+  passwordToken String?
+  passwordTokenExpirationDate DateTime?
+}
