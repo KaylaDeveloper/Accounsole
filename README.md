@@ -57,12 +57,6 @@ https://github.com/KaylaDeveloper/Accounsole/blob/main/sample-data/test-bank-tra
 npm run test
 ```
 
-or
-
-```
-npm run test:watch
-```
-
 ## E2E Tests — Playwright
 
 ```bash
