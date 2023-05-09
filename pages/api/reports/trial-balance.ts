@@ -1,15 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Repository from "services/repository/repository";
-import getDatabase from "services/getDatabase";
+import getRepository from "services/getRepository";
 
 export default async function generateTrialBalance(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  getDatabase(req, res, (accountId: string) => {
+  getRepository(req, res, (repository: Repository) => {
     const { date } = req.body;
 
-    const repository = new Repository(accountId);
     const accountsWithBalances = repository.getAccountsBalances(
       date.split("T")[0]
     );

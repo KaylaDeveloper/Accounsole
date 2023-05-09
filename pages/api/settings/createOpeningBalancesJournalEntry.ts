@@ -1,20 +1,19 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Repository from "services/repository/repository";
-import getDatabase from "services/getDatabase";
+import getRepository from "services/getRepository";
 import { v4 as uuidv4 } from "uuid";
 
 export default async function createOpeningBalancesJournalEntry(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  getDatabase(req, res, (accountId: string) => {
+  getRepository(req, res, (repository: Repository) => {
     const id = uuidv4();
     const description = "Opening balances";
     const type = "Opening balances";
 
     const { date } = req.body;
 
-    const repository = new Repository(accountId);
     const bankTransactionDateEalierThanOpeningBalanceDate =
       repository.checkIsDateLaterThanBankTransactions(date);
 

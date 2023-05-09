@@ -1,15 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Repository from "services/repository/repository";
-import getDatabase from "services/getDatabase";
+import getRepository from "services/getRepository";
 
 export default async function deleteManualEntry(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  getDatabase(req, res, (accountId: string) => {
+  getRepository(req, res, (repository: Repository) => {
     const id = req.query.id as string;
 
-    const repository = new Repository(accountId);
     repository.deleteManualEntry(id);
 
     return res.status(200).json("Success");

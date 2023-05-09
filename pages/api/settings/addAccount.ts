@@ -1,10 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Repository from "services/repository/repository";
-import getDatabase from "services/getDatabase";
+import getRepository from "services/getRepository";
 
 export async function addAccount(req: NextApiRequest, res: NextApiResponse) {
-  getDatabase(req, res, (accountId: string) => {
-    const repository = new Repository(accountId);
+  getRepository(req, res, (repository: Repository) => {
     const account = repository.checkIfAccoutExistsBeforeUpdate(req.body);
     if (account) {
       return res.status(409).json(`${account.name} already exists`);

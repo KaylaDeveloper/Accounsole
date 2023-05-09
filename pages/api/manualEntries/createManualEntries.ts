@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Repository from "services/repository/repository";
-import getDatabase from "services/getDatabase";
+import getRepository from "services/getRepository";
 import { v4 as uuidv4 } from "uuid";
 import { JournalEntry } from "../bank/markAsReconciled";
 
@@ -8,7 +8,7 @@ export default async function createManualEntry(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  getDatabase(req, res, (accountId: string) => {
+  getRepository(req, res, (repository: Repository) => {
     const type = "Manual Entry";
 
     const { entryData, entryId } = req.body;
@@ -20,7 +20,6 @@ export default async function createManualEntry(
       entry.type = type;
     });
 
-    const repository = new Repository(accountId);
     repository.createBankReconciliationJournalEntry(entryData, entryId);
 
     return res.status(200).json("Success");

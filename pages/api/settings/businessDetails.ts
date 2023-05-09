@@ -1,14 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Repository from "services/repository/repository";
-import getDatabase from "services/getDatabase";
+import getRepository from "services/getRepository";
 
 export default async function BusinessSettings(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  getDatabase(req, res, (accountId: string) => {
-    const repository = new Repository(accountId);
-
+  getRepository(req, res, (repository: Repository) => {
     repository.updateBusinessDetails(req.body);
     const { new_business } = req.body;
     if (new_business) {

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import Repository from "./repository/repository";
 
-export default async function getDatabase(
+export default async function getRepository(
   req: NextApiRequest,
   res: NextApiResponse,
   fc: Function
@@ -23,7 +23,7 @@ export default async function getDatabase(
   }
 
   try {
-    fc(accountId);
+    fc(repository);
   } catch (error: any) {
     return res.status(500).json(error.message);
   } finally {
