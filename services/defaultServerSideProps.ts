@@ -4,9 +4,12 @@ import Repository from "services/repository/repository";
 
 export function getDefaultServerSideProps(
   enricher: (
+    // eslint-disable-next-line unused-imports/no-unused-vars
     props: any,
+    // eslint-disable-next-line unused-imports/no-unused-vars
     context: GetServerSidePropsContext,
-    accountId?: string
+    // eslint-disable-next-line unused-imports/no-unused-vars
+    repository?: Repository
   ) => any = (props) => props
 ) {
   return async (context: GetServerSidePropsContext) => {
@@ -26,14 +29,14 @@ export function getDefaultServerSideProps(
             businessDetails: repository.getBusinessDetails(),
           },
           context,
-          session.user.email
+          repository
         ),
       };
     } catch (e) {
       console.error(e);
 
       return {
-        props: {},
+        props: enricher({}, context),
       };
     } finally {
       repository.closeDatabase();

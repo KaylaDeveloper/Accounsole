@@ -72,14 +72,13 @@ export default function Bank(props: {
 }
 
 export const getServerSideProps = getDefaultServerSideProps(
-  (props: any, context: GetServerSidePropsContext, accountId?: string) => {
-    if (!accountId) return props;
+  (props: any, context: GetServerSidePropsContext, repository?: Repository) => {
+    if (!repository) return props;
 
-    const repository = new Repository(accountId);
-    props.accountsWithOpeningBalances =
-      repository.getAccountsWithOpeningBalances();
-    props.bankBalances = repository.getBankBalances();
-
-    return props;
+    return {
+      ...props,
+      accountsWithOpeningBalances: repository.getAccountsWithOpeningBalances(),
+      bankBalances: repository.getBankBalances(),
+    };
   }
 );

@@ -347,19 +347,27 @@ export default function ManualEntries(props: {
 }
 
 export const getServerSideProps = getDefaultServerSideProps(
-  (props: any, context: GetServerSidePropsContext, accountId?: string) => {
-    if (!accountId) return props;
+  (props: any, context: GetServerSidePropsContext, repository?: Repository) => {
+    if (!repository) return props;
 
-    const repository = new Repository(accountId);
-    props.accountsWithOpeningBalances =
+    const accountsWithOpeningBalances =
       repository.getAccountsWithOpeningBalances();
 
     const { id } = context.query;
 
     if (typeof id === "string") {
-      props.manualEntry = repository.getManualEntry(id);
-    }
+      const manualEntry = repository.getManualEntry(id);
 
-    return props;
+      return {
+        ...props,
+        manualEntry,
+        accountsWithOpeningBalances,
+      };
+    } else {
+      return {
+        ...props,
+        accountsWithOpeningBalances,
+      };
+    }
   }
 );

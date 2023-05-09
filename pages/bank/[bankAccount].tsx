@@ -113,22 +113,30 @@ export default function BankAccountTransactions(props: {
 }
 
 export const getServerSideProps = getDefaultServerSideProps(
-  (props: any, context: GetServerSidePropsContext, accountId?: string) => {
-    if (!accountId) return props;
+  (props: any, context: GetServerSidePropsContext, repository?: Repository) => {
+    if (!repository) return props;
 
-    const repository = new Repository(accountId);
-    props.accountsWithOpeningBalances =
+    const accountsWithOpeningBalances =
       repository.getAccountsWithOpeningBalances();
 
     if (typeof context.query.bankAccount === "string") {
       const selectedBankAccount = context.query.bankAccount.split("-")[1];
 
-      props.allBankTransactionsForSelectedAccount =
+      const allBankTransactionsForSelectedAccount =
         repository.findAllBankTransactionsForSelectedAccount(
           selectedBankAccount
         );
-    }
 
-    return props;
+      return {
+        ...props,
+        accountsWithOpeningBalances,
+        allBankTransactionsForSelectedAccount,
+      };
+    } else {
+      return {
+        ...props,
+        accountsWithOpeningBalances,
+      };
+    }
   }
 );

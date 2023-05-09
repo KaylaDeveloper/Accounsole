@@ -226,11 +226,13 @@ export default function Home(props: {
 }
 
 export const getServerSideProps = getDefaultServerSideProps(
-  (props: any, context: GetServerSidePropsContext, accountId?: string) => {
-    if (!accountId) return props;
-    const repository = new Repository(accountId);
-    props.monthlyExpenses = repository.getMonthlyExpenses(months);
-    props.monthlyIncome = repository.getMonthlyIncome(months);
-    return props;
+  (props: any, context: GetServerSidePropsContext, repository?: Repository) => {
+    if (!repository) return props;
+
+    return {
+      ...props,
+      monthlyExpenses: repository.getMonthlyExpenses(months),
+      monthlyIncome: repository.getMonthlyIncome(months),
+    };
   }
 );
