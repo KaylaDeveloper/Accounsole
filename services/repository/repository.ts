@@ -49,16 +49,9 @@ export default class Repository {
   accountDatabasePath: string;
   accountDatabase: DatabaseInterface;
 
-  constructor(accountId?: string) {
-    this.accountDatabasePath = accountId
-      ? path.join(
-          process.cwd(),
-          process.env.SQLITE__ACCOUNT_DB__FOLDER_PATH as string,
-          `account-${accountId}.db`
-        )
-      : path.join(process.cwd(), "data", "account", "unit-test", "test.db");
-
-    this.accountDatabase = new Database(this.accountDatabasePath);
+  constructor(accountDatabasePath: string) {
+    this.accountDatabasePath = accountDatabasePath;
+    this.accountDatabase = new Database(accountDatabasePath);
   }
 
   static createDatabase(accountId?: string): void {
