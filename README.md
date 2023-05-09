@@ -1,6 +1,18 @@
 # Accounsole Accounting Software
 
-Accounsole is a Next.js accounting software project that helps sole traders manage their finances.
+Accounsole is an accounting software helping sole traders manage their finances.
+
+Stack
+
+- Typescript
+- React — UI Framework
+- Tailwind CSS — CSS Framework
+- Next.js — Http App Framework
+- SQLite — Database
+  - Multi-tenant database "Global" - Using Prisma Orm (Used for authentication)
+  - Single-tenant database "Account" — Using better-sqlite3
+- Jest — Unit testing
+- Playright — E2E testing
 
 Features
 
@@ -14,26 +26,18 @@ Features
 - Generate financial reports, including trial balance, income statement, and balance sheet
 - Add opening balances for businesses transitioning to Accounsole
 
-## Clone and Run the Project
+## Running Accounsole
 
-To get started, clone the project repository by running the following command in your terminal:
+To get started, clone the project repository:
 
 ```bash
 git clone https://github.com/KaylaDeveloper/Accounsole.git
 ```
 
-Then, navigate to the project directory and install the necessary dependencies by running one of the following commands, depending on your package manager of choice:
+Then, navigate to the project directory and install the dependencies:
 
 ```bash
 npm install
-```
-
-```bash
-yarn install
-```
-
-```bash
-pnpm install
 ```
 
 Finally, start the development server by running one of the following commands:
@@ -42,60 +46,26 @@ Finally, start the development server by running one of the following commands:
 npm run dev
 ```
 
-```bash
-yarn run dev
-```
-
-```bash
-pnpm run dev
-```
-
-## Create .env.local File
-
-In current working directory, create .env.local file and add below environment variables to enable sending reset-password-link function
-
-```
-SMTP_HOST=
-SMTP_PORT=
-SMTP_USER=
-SMTP_PASS=
-```
-
 ## Sample Data
 
-Try the software using the test-bank-transaction.csv file in sample-data folder
+You can test the import feature using the following file:
+https://github.com/KaylaDeveloper/Accounsole/blob/main/sample-data/test-bank-transactions.csv
 
-## Run Jest Tests
-
-To run Jest tests, use one of the following commands:
+## Unit Tests — Jest
 
 ```bash
 npm run test
 ```
 
-```bash
-yarn run test
+or
+
+```
+npm run test:watch
 ```
 
-```bash
-pnpm run test
-```
-
-## Run Playwright End-to-End Tests
-
-To run Playwright end-to-end tests, use one of the following commands:
+## E2E Tests — Playwright
 
 ```bash
 npm run e2e
 npm run e2e-test
-```
-
-```bash
-yarn run e2e
-yarn run e2e-test
-```
-
-```bash
-pnpm run e2e
-pnpm run e2e-test
 ```
