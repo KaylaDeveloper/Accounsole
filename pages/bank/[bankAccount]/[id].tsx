@@ -363,11 +363,13 @@ export const getServerSideProps = getDefaultServerSideProps(
       return {
         ...props,
         journalEntry,
+        bankTransaction,
         accountsWithOpeningBalances,
       };
     } else {
       return {
         ...props,
+        bankTransaction,
         accountsWithOpeningBalances,
       };
     }
