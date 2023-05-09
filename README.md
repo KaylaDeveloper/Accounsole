@@ -9,7 +9,6 @@ Accounsole is an accounting software helping sole traders manage their finances.
 ![trial balance](./public/pics/reports/reports1.png)
 ![balance sheet](./public/pics/reports/reports2.png)
 ![income statement](./public/pics/reports/reports3.png)
-![business details](./public/pics/settings/settings2.png)
 ![opening balances](./public/pics/settings/settings1.png)
 
 Stack
