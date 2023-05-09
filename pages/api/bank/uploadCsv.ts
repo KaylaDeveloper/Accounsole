@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import multer from "multer";
 import path from "path";
 import { getSession } from "next-auth/react";
-import Repository from "services/repository/Repository.ts";
+import Repository from "services/repository/Repository";
 import turnDateStringIntoDateObject, {
   turnDateStringIntoISOStandard,
 } from "utils/turnDateStringIntoDateObject";

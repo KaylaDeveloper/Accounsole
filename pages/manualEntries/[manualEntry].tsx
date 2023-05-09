@@ -5,7 +5,7 @@ import { getDefaultServerSideProps } from "services/defaultServerSideProps";
 import Repository, {
   AccountsWithOpeningBalances,
   BusinessDetails,
-} from "services/repository/Repository.ts";
+} from "services/repository/Repository";
 import "react-datepicker/dist/react-datepicker.css";
 import { Row } from "../bank/[bankAccount]/[id]";
 import { useState } from "react";

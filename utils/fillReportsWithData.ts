@@ -5,11 +5,13 @@ import {
 } from "@/pages/reports/trial-balance";
 import { AxiosResponse } from "axios";
 import { SetStateAction } from "react";
-import { AccountsWithOpeningBalances } from "../services/repository/Repository.ts";
+import { AccountsWithOpeningBalances } from "../services/repository/Repository";
 
 export default function fillReportWithData(
+  // eslint-disable-next-line unused-imports/no-unused-vars
   setAlert: (value: SetStateAction<string>) => void,
   setAccounts: (
+    // eslint-disable-next-line unused-imports/no-unused-vars
     value: SetStateAction<[] | AccountsWithOpeningBalances[]>
   ) => void,
   res: AxiosResponse<any, any>

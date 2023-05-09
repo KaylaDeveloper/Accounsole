@@ -2,7 +2,7 @@ import { FullConfig } from "@playwright/test";
 import path from "path";
 import fs from "fs";
 import { testAccounts } from "./testAccounts";
-import Repository from "../services/repository/Repository.ts.ts";
+import Repository from "../services/repository/Repository";
 
 async function globalTeardown(_config: FullConfig) {
   const files = fs.readdirSync(

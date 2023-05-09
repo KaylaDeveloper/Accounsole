@@ -1,6 +1,6 @@
 import { AccountDetails } from "@/components/modal/AddAccountModal";
 import { NextApiRequest, NextApiResponse } from "next";
-import Repository from "services/repository/Repository.ts";
+import Repository from "services/repository/Repository";
 import getRepository from "services/getRepository";
 
 export default async function addBankAccount(

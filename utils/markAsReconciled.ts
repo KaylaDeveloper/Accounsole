@@ -1,6 +1,6 @@
 import { TransactionRow } from "@/pages/bank/[bankAccount]";
 import { Row } from "@/pages/bank/[bankAccount]/[id]";
-import { BusinessDetails } from "../services/repository/Repository.ts";
+import { BusinessDetails } from "../services/repository/Repository";
 
 export function validateRows(
   debitTotal: number,

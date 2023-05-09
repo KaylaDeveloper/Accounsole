@@ -10,7 +10,7 @@ import Repository, {
   AccountsWithOpeningBalances,
   BankTransaction,
   BusinessDetails,
-} from "../../../services/repository/Repository.ts";
+} from "../../../services/repository/Repository";
 import "react-data-grid/lib/styles.css";
 import axios from "axios";
 import { useRouter } from "next/router";
