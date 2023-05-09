@@ -13,7 +13,7 @@ export default function LoginForm() {
   const router = useRouter();
   const [alert, setAlert] = useAlert();
 
-  const loginUser = async (values: any) => {
+  const loginUser = async (values: { email: string; password: string }) => {
     const res = await signIn("credentials", {
       redirect: false,
       email: values.email,

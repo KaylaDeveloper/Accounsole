@@ -1,3 +1,16 @@
+type TextInputFieldProps = {
+  type: string;
+  name: string;
+  label: string;
+  value: string;
+  errors: { [key: string]: string };
+  touched: { [key: string]: boolean };
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  handleBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
+} & React.InputHTMLAttributes<HTMLInputElement>;
+
 export default function TextInputField({
   type,
   name,
@@ -8,7 +21,7 @@ export default function TextInputField({
   handleChange,
   handleBlur,
   ...props
-}: any) {
+}: TextInputFieldProps) {
   return (
     <div className="mb-6 flex  items-baseline gap-6 relative">
       <label htmlFor={name} className="basis-1/2">

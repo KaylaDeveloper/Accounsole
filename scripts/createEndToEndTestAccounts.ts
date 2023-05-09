@@ -32,7 +32,7 @@ async function deleteAccountsIfExists() {
   try {
     const count = await prisma.account.count();
     if (count > 0) {
-      const deletedAccounts = await prisma.account.deleteMany({});
+      await prisma.account.deleteMany({});
     }
     const files = fs.readdirSync(
       path.join(process.cwd(), "data", "account", "e2e-test")

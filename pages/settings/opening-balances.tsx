@@ -271,7 +271,13 @@ export default function OpeningBalances(props: {
 }
 
 export const getServerSideProps = getDefaultServerSideProps(
-  (props: any, context: GetServerSidePropsContext, repository?: Repository) => {
+  (
+    props: {
+      businessDetails?: BusinessDetails;
+    },
+    context: GetServerSidePropsContext,
+    repository?: Repository
+  ) => {
     if (!repository) return props;
 
     return {

@@ -1,12 +1,14 @@
 import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
-import Repository from "services/repository/Repository";
+import Repository, { BusinessDetails } from "services/repository/Repository";
 import path from "path";
 
 export function getDefaultServerSideProps(
   enricher: (
     // eslint-disable-next-line unused-imports/no-unused-vars
-    props: any,
+    props: {
+      businessDetails?: BusinessDetails;
+    },
     // eslint-disable-next-line unused-imports/no-unused-vars
     context: GetServerSidePropsContext,
     // eslint-disable-next-line unused-imports/no-unused-vars
