@@ -2,8 +2,9 @@ import csv from "csv-parser";
 import { Readable } from "stream";
 import { NextApiRequest, NextApiResponse } from "next";
 import multer from "multer";
+import path from "path";
 import { getSession } from "next-auth/react";
-import Repository from "services/repository/repository";
+import Repository from "services/repository/Repository";
 import turnDateStringIntoDateObject, {
   turnDateStringIntoISOStandard,
 } from "utils/turnDateStringIntoDateObject";
@@ -39,8 +40,12 @@ export default async function handler(
         .status(403)
         .json("You must be signed in to upload a CSV file.");
     }
-
-    const repository = new Repository(session?.user?.email);
+    const acountDatabasePath = path.join(
+      process.cwd(),
+      process.env.SQLITE__ACCOUNT_DB__FOLDER_PATH as string,
+      `account-${session?.user?.email}.db`
+    );
+    const repository = new Repository(acountDatabasePath);
     const accountDatabase = repository.accountDatabase;
     if (!accountDatabase) {
       return res.status(403).json("Failed to open account database.");

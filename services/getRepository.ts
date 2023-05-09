@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
-import Repository from "./repository/repository";
+import Repository from "./repository/Repository";
+import path from "path";
 
 export default async function getRepository(
   req: NextApiRequest,
@@ -13,9 +14,12 @@ export default async function getRepository(
     return res.status(403).json("You must be signed in to upload a CSV file.");
   }
 
-  const accountId: string = session?.user?.email;
-
-  const repository = new Repository(accountId);
+  const acountDatabasePath = path.join(
+    process.cwd(),
+    process.env.SQLITE__ACCOUNT_DB__FOLDER_PATH as string,
+    `account-${session?.user?.email}.db`
+  );
+  const repository = new Repository(acountDatabasePath);
   const accountDatabase = repository.accountDatabase;
 
   if (!accountDatabase) {

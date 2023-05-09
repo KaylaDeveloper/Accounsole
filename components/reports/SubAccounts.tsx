@@ -1,4 +1,4 @@
-import { AccountsWithOpeningBalances } from "services/repository/repository";
+import { AccountsWithOpeningBalances } from "services/repository/Repository";
 import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
 
 export default function SubAccounts({

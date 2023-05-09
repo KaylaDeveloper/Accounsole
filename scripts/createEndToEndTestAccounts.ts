@@ -1,4 +1,4 @@
-import Repository from "../services/repository/repository";
+import Repository from "../services/repository/Repository";
 import { PrismaClient } from "@prisma/client";
 import fs from "fs";
 import path from "path";

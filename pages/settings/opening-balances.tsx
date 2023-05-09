@@ -3,7 +3,7 @@ import DataGrid, { Column, textEditor } from "react-data-grid";
 import Repository, {
   AccountsWithOpeningBalances,
   BusinessDetails,
-} from "services/repository/repository";
+} from "services/repository/Repository";
 import { useMemo, useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";

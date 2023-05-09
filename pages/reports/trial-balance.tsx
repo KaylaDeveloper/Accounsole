@@ -3,7 +3,7 @@ import { getDefaultServerSideProps } from "services/defaultServerSideProps";
 import {
   AccountsWithOpeningBalances,
   BusinessDetails,
-} from "services/repository/repository";
+} from "services/repository/Repository";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 

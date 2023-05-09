@@ -1,4 +1,4 @@
-import { AccountsWithOpeningBalances } from "services/repository/repository";
+import { AccountsWithOpeningBalances } from "services/repository/Repository";
 
 export function totalDebit(accounts: AccountsWithOpeningBalances[]) {
   return accounts.reduce((acc, curr) => acc + (curr.debit ?? 0), 0);

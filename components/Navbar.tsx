@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Menu } from "@headlessui/react";
 import { signOut } from "next-auth/react";
-import { BusinessDetails } from "services/repository/repository";
+import { BusinessDetails } from "services/repository/Repository";
 
 export default function Navbar(props: { businessDetails?: BusinessDetails }) {
   if (!props.businessDetails) {

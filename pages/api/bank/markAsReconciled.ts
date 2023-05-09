@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import Repository, { EntryType } from "services/repository/repository";
+import Repository, { EntryType } from "services/repository/Repository";
 import getRepository from "services/getRepository";
 import { v4 as uuidv4 } from "uuid";
 

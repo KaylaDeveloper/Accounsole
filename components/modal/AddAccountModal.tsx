@@ -2,7 +2,7 @@ import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { AccountsWithOpeningBalances } from "../../services/repository/repository";
+import { AccountsWithOpeningBalances } from "../../services/repository/Repository";
 import Modal from "./Modal";
 import React from "react";
 import useAlert from "hooks/useAlert";

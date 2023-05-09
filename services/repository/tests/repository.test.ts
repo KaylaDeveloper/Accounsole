@@ -1,9 +1,8 @@
 import bankTransactions from "./testBankTransactions";
-import Repository from "../repository";
+import Repository from "../Repository";
 import uuid from "uuid-random";
 import { entryData, entryIds } from "./testEntryData";
-
-let context: RepositoryContext;
+import path from "path";
 
 const allMonths = [
   { month: "07", fromDate: `2022-07-01`, toDate: `2022-07-31` },
@@ -20,8 +19,14 @@ const allMonths = [
   { month: "06", fromDate: `2023-06-01`, toDate: `2023-06-31` },
 ];
 
-const repository = new Repository();
-const accountDatabase = repository.accountDatabase;
+const acountDatabasePath = path.join(
+  process.cwd(),
+  "data",
+  "account",
+  "unit-test",
+  "test.db"
+);
+const repository = new Repository(acountDatabasePath);
 
 beforeAll(() => {
   Repository.createDatabase();
