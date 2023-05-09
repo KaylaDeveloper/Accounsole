@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import useFilter from "../reactDataGrid/headerRenderer";
 import DataGrid, { Column } from "react-data-grid";
 import Link from "next/link";
-import { BankTransaction } from "services/repository/Repository";
+import { BankTransaction } from "services/repository/Repository.ts";
 import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
 
 export default function AllTransactions(props: {

@@ -5,7 +5,7 @@ import { getDefaultServerSideProps } from "services/defaultServerSideProps";
 import Repository, {
   AccountsWithOpeningBalances,
   BusinessDetails,
-} from "services/repository/Repository";
+} from "services/repository/Repository.ts";
 import "react-datepicker/dist/react-datepicker.css";
 import Link from "next/link";
 import DataGrid, { Column } from "react-data-grid";

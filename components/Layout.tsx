@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { BusinessDetails } from "services/repository/Repository";
+import { BusinessDetails } from "services/repository/Repository.ts";
 import Navbar from "./Navbar";
 
 export default function Layout(props: {

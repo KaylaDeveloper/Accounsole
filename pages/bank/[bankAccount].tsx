@@ -7,7 +7,7 @@ import Repository, {
   AccountsWithOpeningBalances,
   BankTransaction,
   BusinessDetails,
-} from "../../services/repository/Repository";
+} from "../../services/repository/Repository.ts";
 import { Row } from "react-data-grid";
 import "react-data-grid/lib/styles.css";
 import NoBankTransactions from "@/components/bank/NoBankTransactions";

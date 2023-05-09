@@ -1,4 +1,4 @@
-import { AccountsWithOpeningBalances } from "services/repository/Repository";
+import { AccountsWithOpeningBalances } from "services/repository/Repository.ts";
 import { totalDebit, totalCredit } from "utils/accountsCalculation";
 import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
 import TableHead from "./TableHead";

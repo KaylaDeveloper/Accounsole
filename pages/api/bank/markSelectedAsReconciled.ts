@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import Repository from "services/repository/Repository";
+import Repository from "services/repository/Repository.ts";
 import getRepository from "services/getRepository";
 import { v4 as uuidv4 } from "uuid";
 import { JournalEntry } from "./markAsReconciled";

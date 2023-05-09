@@ -8,7 +8,7 @@ import Repository, {
   AccountsWithOpeningBalances,
   BankBalances,
   BusinessDetails,
-} from "services/repository/Repository";
+} from "services/repository/Repository.ts";
 import calculateBankUpToDateBalances from "utils/calculateBankUpToDateBalances";
 import { GetServerSidePropsContext } from "next";
 

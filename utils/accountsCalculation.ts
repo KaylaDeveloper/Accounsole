@@ -1,4 +1,4 @@
-import { AccountsWithOpeningBalances } from "services/repository/Repository";
+import { AccountsWithOpeningBalances } from "services/repository/Repository.ts";
 
 export function totalDebit(accounts: AccountsWithOpeningBalances[]) {
   return accounts.reduce((acc, curr) => acc + (curr.debit ?? 0), 0);

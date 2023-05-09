@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { getDefaultServerSideProps } from "services/defaultServerSideProps";
-import Repository, { BusinessDetails } from "services/repository/Repository";
+import Repository, { BusinessDetails } from "services/repository/Repository.ts";
 import React from "react";
 import { GetServerSidePropsContext } from "next";
 import Image from "next/image";

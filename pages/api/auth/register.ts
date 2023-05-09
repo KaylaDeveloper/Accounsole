@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "lib/prismadb";
 import hashPassword from "utils/hashPassword";
-import Repository from "services/repository/Repository";
+import Repository from "services/repository/Repository.ts";
 
 export default async function register(
   req: NextApiRequest,

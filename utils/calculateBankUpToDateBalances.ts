@@ -1,7 +1,7 @@
 import {
   AccountsWithOpeningBalances,
   BankBalances,
-} from "services/repository/Repository";
+} from "services/repository/Repository.ts";
 
 export default function calculateBankUpToDateBalances(
   accountsWithOpeningBalances: AccountsWithOpeningBalances[],

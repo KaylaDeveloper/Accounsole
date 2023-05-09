@@ -6,7 +6,7 @@ import {
   AccountsWithOpeningBalances,
   BankTransaction,
   BusinessDetails,
-} from "services/repository/Repository";
+} from "services/repository/Repository.ts";
 import { createEntryData, validateRows } from "utils/markAsReconciled";
 import SelectColumn from "../reactDataGrid/selectColumn";
 import { useState } from "react";

@@ -5,7 +5,7 @@ import InputFields from "@/components/TextInputField";
 import Button from "@/components/Button";
 import AccessDenied from "@/components/AccessDenied";
 import Layout from "@/components/Layout";
-import { BusinessDetails } from "services/repository/Repository";
+import { BusinessDetails } from "services/repository/Repository.ts";
 import { useRouter } from "next/navigation";
 import { getDefaultServerSideProps } from "services/defaultServerSideProps";
 import Link from "next/link";

@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
-import Repository from "services/repository/Repository";
+import Repository from "services/repository/Repository.ts";
 import path from "path";
 
 export function getDefaultServerSideProps(

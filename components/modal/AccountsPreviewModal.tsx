@@ -1,7 +1,7 @@
 import {
   AccountsWithOpeningBalances,
   BusinessDetails,
-} from "services/repository/Repository";
+} from "services/repository/Repository.ts";
 import { getOnlyAccountsWithBalances } from "utils/accountsCalculation";
 import Modal from "./Modal";
 import TrialBalanceTable from "../reports/TrialBalanceTable";

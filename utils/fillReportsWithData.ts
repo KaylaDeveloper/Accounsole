@@ -5,7 +5,7 @@ import {
 } from "@/pages/reports/trial-balance";
 import { AxiosResponse } from "axios";
 import { SetStateAction } from "react";
-import { AccountsWithOpeningBalances } from "../services/repository/Repository";
+import { AccountsWithOpeningBalances } from "../services/repository/Repository.ts";
 
 export default function fillReportWithData(
   setAlert: (value: SetStateAction<string>) => void,
