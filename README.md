@@ -59,7 +59,14 @@ npm run test
 
 ## E2E Tests — Playwright
 
+First, start the http server:
+
 ```bash
 npm run e2e
+```
+
+Then,
+
+```bash
 npm run e2e-test
 ```
