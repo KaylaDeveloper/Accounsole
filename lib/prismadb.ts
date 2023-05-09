@@ -10,7 +10,7 @@ const client =
   new PrismaClient({
     datasources: {
       db: {
-        url: "file://" + process.cwd() + process.env.DATABASE_URL,
+        url: "file://" + process.cwd() + process.env.SQLITE__GLOBAL_DB__PATH,
       },
     },
   });
