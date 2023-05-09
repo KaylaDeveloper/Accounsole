@@ -79,7 +79,7 @@ export default class Repository {
     try {
       const sqlResult = this.accountDatabase
         .prepare(
-          "SELECT business_name, GST_registration, new_business FROM business_details WHERE id = 1"
+          `SELECT business_name, GST_registration, new_business FROM business_details WHERE id = 1`
         )
         .get();
 
@@ -106,10 +106,10 @@ export default class Repository {
       this.accountDatabase
         .prepare(
           `
-      UPDATE business_details
-      SET business_name = ?, GST_registration = ?, new_business = ?
-      WHERE id = 1
-    `
+UPDATE business_details
+SET business_name = ?, GST_registration = ?, new_business = ?
+WHERE id = 1
+           `
         )
         .run(
           businessDetails.business_name,
@@ -125,19 +125,20 @@ export default class Repository {
     try {
       return this.accountDatabase
         .prepare(
-          `SELECT coa.id, coa.name, coa.type,
-          CASE
-            WHEN j.debit THEN j.debit
-            WHEN coa.type IN ('Expense', 'Direct Costs', 'Current Asset', 'Inventory', 'Non-Current Asset', 'Fixed Asset', 'Bank') THEN 0  
-            ELSE null
-          END AS debit,
-          CASE
-            WHEN j.credit THEN j.credit
-            WHEN coa.type IN ('Revenue', 'Current Liability', 'Non-current Liability', 'Equity') THEN 0  
-            ELSE null
-          END AS credit
-        FROM chart_of_accounts AS coa
-        LEFT JOIN journal j ON j.type = 'Opening balances' AND coa.id = j.account_id
+          `
+SELECT coa.id, coa.name, coa.type,
+CASE
+WHEN j.debit THEN j.debit
+WHEN coa.type IN ('Expense', 'Direct Costs', 'Current Asset', 'Inventory', 'Non-Current Asset', 'Fixed Asset', 'Bank') THEN 0  
+ELSE null
+END AS debit,
+CASE
+WHEN j.credit THEN j.credit
+WHEN coa.type IN ('Revenue', 'Current Liability', 'Non-current Liability', 'Equity') THEN 0  
+ELSE null
+END AS credit
+FROM chart_of_accounts AS coa
+LEFT JOIN journal j ON j.type = 'Opening balances' AND coa.id = j.account_id
         `
         )
         .all();
@@ -149,7 +150,7 @@ export default class Repository {
   checkIfAccoutExistsBeforeUpdate(accountDetails: AccountDetails) {
     return this.accountDatabase
       .prepare(
-        "SELECT name FROM chart_of_accounts WHERE name LIKE '%' || ? || '%' AND type = ?"
+        `SELECT name FROM chart_of_accounts WHERE name LIKE '%' || ? || '%' AND type = ?`
       )
       .get(accountDetails.accountName, accountDetails.accountType);
   }
@@ -193,7 +194,7 @@ export default class Repository {
   ) {
     try {
       const stmt = this.accountDatabase.prepare(
-        "INSERT INTO bank_transactions (bankAccountName, date, description, debit, credit, reconciled, entryId) VALUES (?, ?, ?, ?, ?, ?, ?)"
+        `INSERT INTO bank_transactions (bankAccountName, date, description, debit, credit, reconciled, entryId) VALUES (?, ?, ?, ?, ?, ?, ?)`
       );
       bankTransactions.forEach((bankTransaction) =>
         stmt.run(
@@ -215,7 +216,7 @@ export default class Repository {
     try {
       const bankTransactions = this.accountDatabase
         .prepare(
-          "SELECT * FROM bank_transactions WHERE bankAccountName = ? ORDER BY id DESC"
+          `SELECT * FROM bank_transactions WHERE bankAccountName = ? ORDER BY id DESC`
         )
         .all(selectedBankAccount);
       if (bankTransactions.length === 0) {
@@ -244,7 +245,7 @@ export default class Repository {
   } {
     try {
       const bankTransaction = this.accountDatabase
-        .prepare("SELECT * FROM bank_transactions WHERE id = ? ")
+        .prepare(`SELECT * FROM bank_transactions WHERE id = ? `)
         .get(id);
       bankTransaction.reconciled =
         bankTransaction.reconciled === "true" ? true : false;
@@ -259,11 +260,13 @@ export default class Repository {
       return (
         this.accountDatabase
           .prepare(
-            `SELECT bankAccountName AS name,
-          SUM(COALESCE(debit, 0)) AS debit,
-          SUM(COALESCE(credit, 0)) AS credit
-          FROM bank_transactions
-          GROUP BY bankAccountName`
+            `
+SELECT bankAccountName AS name,
+SUM(COALESCE(debit, 0)) AS debit,
+SUM(COALESCE(credit, 0)) AS credit
+FROM bank_transactions
+GROUP BY bankAccountName
+          `
           )
           .all() || []
       );
@@ -274,7 +277,7 @@ export default class Repository {
 
   checkIsDateLaterThanBankTransactions(date: string) {
     return this.accountDatabase
-      .prepare("SELECT date FROM bank_transactions WHERE date < ?")
+      .prepare(`SELECT date FROM bank_transactions WHERE date < ?`)
       .get(date);
   }
 
@@ -282,7 +285,7 @@ export default class Repository {
     try {
       return this.accountDatabase
         .prepare(
-          "UPDATE bank_transactions SET reconciled = ?, entryId = ? WHERE id = ?"
+          `UPDATE bank_transactions SET reconciled = ?, entryId = ? WHERE id = ?`
         )
         .run("true", entryId, id);
     } catch (error) {
@@ -294,7 +297,7 @@ export default class Repository {
     try {
       return (
         this.accountDatabase
-          .prepare("SELECT date FROM journal WHERE type = ?")
+          .prepare(`SELECT date FROM journal WHERE type = ?`)
           .pluck()
           .get("Opening balances") || null
       );
@@ -306,7 +309,7 @@ export default class Repository {
   deleteOpeningBalanceEntriesIfExists(): void {
     try {
       this.accountDatabase
-        .prepare("DELETE FROM journal WHERE type = 'Opening balances'")
+        .prepare(`DELETE FROM journal WHERE type = 'Opening balances'`)
         .run();
     } catch (e) {
       throw new Error("Failed to delete opening balance entries");
@@ -324,7 +327,7 @@ export default class Repository {
       this.deleteOpeningBalanceEntriesIfExists();
 
       const stmt = this.accountDatabase.prepare(
-        "INSERT INTO journal (id, type, description, date, account_id, account_name, debit, credit) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+        `INSERT INTO journal (id, type, description, date, account_id, account_name, debit, credit) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
       );
 
       accounts.forEach((account) =>
@@ -350,12 +353,12 @@ export default class Repository {
   ) {
     try {
       if (entryId) {
-        const deleteStmt = this.accountDatabase
+        this.accountDatabase
           .prepare("DELETE FROM journal WHERE id = ?")
           .run(entryId);
       }
       const stmt = this.accountDatabase.prepare(
-        "INSERT INTO journal (id, type, description, date, account_id, account_name, debit, credit) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+        `INSERT INTO journal (id, type, description, date, account_id, account_name, debit, credit) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
       );
       entryData.forEach((entry) =>
         stmt.run(
@@ -378,7 +381,7 @@ export default class Repository {
     try {
       return (
         this.accountDatabase
-          .prepare("SELECT * FROM journal WHERE id = ?")
+          .prepare(`SELECT * FROM journal WHERE id = ?`)
           .all(entryId) || []
       );
     } catch (error) {
@@ -390,7 +393,7 @@ export default class Repository {
     try {
       return (
         this.accountDatabase
-          .prepare("SELECT * FROM journal WHERE type = ? ORDER BY id, date ")
+          .prepare(`SELECT * FROM journal WHERE type = ? ORDER BY id, date `)
           .all("Manual Entry") || []
       );
     } catch (error) {
@@ -401,7 +404,7 @@ export default class Repository {
   getManualEntry(id: string) {
     try {
       return this.accountDatabase
-        .prepare("SELECT * FROM journal WHERE id = ?")
+        .prepare(`SELECT * FROM journal WHERE id = ?`)
         .all(id);
     } catch (error) {
       throw new Error("Failed to get manual entry");
@@ -411,7 +414,7 @@ export default class Repository {
   deleteManualEntry(id: string) {
     try {
       return this.accountDatabase
-        .prepare("DELETE FROM journal WHERE id = ?")
+        .prepare(`DELETE FROM journal WHERE id = ?`)
         .run(id);
     } catch (error) {
       throw new Error("Failed to delete manual entry");
@@ -423,13 +426,15 @@ export default class Repository {
       return (
         this.accountDatabase
           .prepare(
-            `SELECT coa.id, coa.name, coa.type,
-           SUM(COALESCE(debit, 0)) AS debit,
-           SUM(COALESCE(credit, 0)) AS credit
-           FROM chart_of_accounts AS coa
-           INNER JOIN journal j ON coa.id = j.account_id
-           WHERE j.date <= ?
-           GROUP BY coa.id`
+            `
+SELECT coa.id, coa.name, coa.type,
+SUM(COALESCE(debit, 0)) AS debit,
+SUM(COALESCE(credit, 0)) AS credit
+FROM chart_of_accounts AS coa
+INNER JOIN journal j ON coa.id = j.account_id
+WHERE j.date <= ?
+GROUP BY coa.id
+           `
           )
           .all(date) || []
       );
@@ -446,13 +451,15 @@ export default class Repository {
       return (
         this.accountDatabase
           .prepare(
-            `SELECT coa.id, coa.name, coa.type,
-          SUM(COALESCE(debit, 0)) AS debit,
-          SUM(COALESCE(credit, 0)) AS credit
-      FROM chart_of_accounts AS coa
-      INNER JOIN journal j ON coa.id = j.account_id AND coa.type IN ('Direct Costs', 'Revenue', 'Expense')
-      WHERE j.date BETWEEN ? AND ?
-      GROUP BY coa.id`
+            `
+SELECT coa.id, coa.name, coa.type,
+SUM(COALESCE(debit, 0)) AS debit,
+SUM(COALESCE(credit, 0)) AS credit
+FROM chart_of_accounts AS coa
+INNER JOIN journal j ON coa.id = j.account_id AND coa.type IN ('Direct Costs', 'Revenue', 'Expense')
+WHERE j.date BETWEEN ? AND ?
+GROUP BY coa.id
+            `
           )
           .all(fromDate, toDate) || []
       );
@@ -473,10 +480,12 @@ export default class Repository {
         const monethlyExpensesOrIncome =
           this.accountDatabase
             .prepare(
-              `SELECT SUM(COALESCE(debit, 0)) - SUM(COALESCE(credit, 0)) AS amount
-            FROM journal
-            INNER JOIN chart_of_accounts coa ON journal.account_id = coa.id
-            WHERE journal.date BETWEEN ? AND ? AND coa.type IN ('Expense', 'Direct Costs')`
+              `
+SELECT SUM(COALESCE(debit, 0)) - SUM(COALESCE(credit, 0)) AS amount
+FROM journal
+INNER JOIN chart_of_accounts coa ON journal.account_id = coa.id
+WHERE journal.date BETWEEN ? AND ? AND coa.type IN ('Expense', 'Direct Costs')
+            `
             )
             .pluck()
             .get(fromDate, toDate) || 0;
@@ -499,10 +508,12 @@ export default class Repository {
         const monethlyExpensesOrIncome =
           this.accountDatabase
             .prepare(
-              `SELECT SUM(COALESCE(credit, 0)) - SUM(COALESCE(debit, 0)) AS amount
-          FROM journal
-          INNER JOIN chart_of_accounts coa ON journal.account_id = coa.id
-          WHERE journal.date BETWEEN ? AND ? AND coa.type IN ('Revenue', 'Other Income')`
+              `
+SELECT SUM(COALESCE(credit, 0)) - SUM(COALESCE(debit, 0)) AS amount
+FROM journal
+INNER JOIN chart_of_accounts coa ON journal.account_id = coa.id
+WHERE journal.date BETWEEN ? AND ? AND coa.type IN ('Revenue', 'Other Income')
+              `
             )
             .pluck()
             .get(fromDate, toDate) || 0;
