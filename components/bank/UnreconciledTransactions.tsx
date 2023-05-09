@@ -10,7 +10,7 @@ import {
 import { createEntryData, validateRows } from "utils/markAsReconciled";
 import SelectColumn from "../reactDataGrid/selectColumn";
 import { useState } from "react";
-import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
+import formatMoney from "utils/formatMoney";
 
 export default function UnreconciledTransactions(props: {
   businessDetails: BusinessDetails;
@@ -379,9 +379,7 @@ export default function UnreconciledTransactions(props: {
         }
       },
       formatter: ({ row }) => (
-        <span>
-          {row.debit !== "" ? turnNumberIntoAudFormat(Number(row.debit)) : ""}
-        </span>
+        <span>{row.debit !== "" ? formatMoney(Number(row.debit)) : ""}</span>
       ),
     },
     {
@@ -424,9 +422,7 @@ export default function UnreconciledTransactions(props: {
         }
       },
       formatter: ({ row }) => (
-        <span>
-          {row.credit !== "" ? turnNumberIntoAudFormat(Number(row.credit)) : ""}
-        </span>
+        <span>{row.credit !== "" ? formatMoney(Number(row.credit)) : ""}</span>
       ),
     },
     {

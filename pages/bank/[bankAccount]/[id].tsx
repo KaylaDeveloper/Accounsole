@@ -4,7 +4,7 @@ import { JournalEntry } from "@/pages/api/bank/markAsReconciled";
 import { GetServerSidePropsContext } from "next";
 import { useState } from "react";
 import DataGrid, { Column } from "react-data-grid";
-import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
+import formatMoney from "utils/formatMoney";
 import { getDefaultServerSideProps } from "../../../services/defaultServerSideProps";
 import Repository, {
   AccountsWithOpeningBalances,
@@ -135,9 +135,7 @@ export default function BankAccountTransactions(props: {
         }
       },
       formatter: ({ row }) => (
-        <span>
-          {row.debit !== "" ? turnNumberIntoAudFormat(Number(row.debit)) : ""}
-        </span>
+        <span>{row.debit !== "" ? formatMoney(Number(row.debit)) : ""}</span>
       ),
     },
     {
@@ -161,9 +159,7 @@ export default function BankAccountTransactions(props: {
         }
       },
       formatter: ({ row }) => (
-        <span>
-          {row.credit !== "" ? turnNumberIntoAudFormat(Number(row.credit)) : ""}
-        </span>
+        <span>{row.credit !== "" ? formatMoney(Number(row.credit)) : ""}</span>
       ),
     },
     {
@@ -326,13 +322,11 @@ export default function BankAccountTransactions(props: {
                         {entry.account_name}
                       </td>
                       <td className="border-2 border-gray-200 border-collapse px-2">
-                        {entry.debit
-                          ? turnNumberIntoAudFormat(Number(entry.debit))
-                          : null}
+                        {entry.debit ? formatMoney(Number(entry.debit)) : null}
                       </td>
                       <td className="border-2 border-gray-200 border-collapse px-2">
                         {entry.credit
-                          ? turnNumberIntoAudFormat(Number(entry.credit))
+                          ? formatMoney(Number(entry.credit))
                           : null}
                       </td>
                     </tr>

@@ -8,7 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import axios from "axios";
-import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
+import formatMoney from "utils/formatMoney";
 import useAlert from "hooks/useAlert";
 import fillReportWithData from "utils/fillReportsWithData";
 import TableHead from "@/components/reports/TableHead";
@@ -179,7 +179,7 @@ export default function BalanceSheet(props: {
                   </td>
                   <td className="text-left border px-4 py-2">{null}</td>
                   <td className="text-left border px-4 py-2 ">
-                    {turnNumberIntoAudFormat(retainedEarningsAccount)}
+                    {formatMoney(retainedEarningsAccount)}
                   </td>
                 </tr>
 

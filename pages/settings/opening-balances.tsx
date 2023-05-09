@@ -8,7 +8,7 @@ import { useMemo, useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
+import formatMoney from "utils/formatMoney";
 import { getDefaultServerSideProps } from "services/defaultServerSideProps";
 import { GetServerSidePropsContext } from "next";
 import Layout from "@/components/Layout";
@@ -58,12 +58,10 @@ const columns: readonly Column<
     name: "Debit",
     editor: textEditor,
     formatter: ({ row }) => (
-      <span>
-        {row.debit !== null ? turnNumberIntoAudFormat(Number(row.debit)) : null}
-      </span>
+      <span>{row.debit !== null ? formatMoney(Number(row.debit)) : null}</span>
     ),
     summaryFormatter({ row: { totalDebit } }: { row: SummaryRow }) {
-      return <strong>{turnNumberIntoAudFormat(totalDebit)}</strong>;
+      return <strong>{formatMoney(totalDebit)}</strong>;
     },
   },
   {
@@ -72,13 +70,11 @@ const columns: readonly Column<
     editor: textEditor,
     formatter: ({ row }) => (
       <span>
-        {row.credit !== null
-          ? turnNumberIntoAudFormat(Number(row.credit))
-          : null}
+        {row.credit !== null ? formatMoney(Number(row.credit)) : null}
       </span>
     ),
     summaryFormatter({ row: { totalCredit } }: { row: SummaryRow }) {
-      return <strong>{turnNumberIntoAudFormat(totalCredit)}</strong>;
+      return <strong>{formatMoney(totalCredit)}</strong>;
     },
   },
 ];

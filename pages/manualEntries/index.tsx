@@ -11,7 +11,7 @@ import Link from "next/link";
 import DataGrid, { Column } from "react-data-grid";
 import "react-data-grid/lib/styles.css";
 import { Row } from "../bank/[bankAccount]/[id]";
-import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
+import formatMoney from "utils/formatMoney";
 import { useMemo, useState } from "react";
 import useFilter from "@/components/reactDataGrid/headerRenderer";
 import axios from "axios";
@@ -160,14 +160,9 @@ export default function ManualEntries(props: {
       date: isFirstLine ? manualEntry.date : "",
       description: isFirstLine ? manualEntry.description : "",
       account: manualEntry.account_name,
-      debit:
-        manualEntry.debit === null
-          ? ""
-          : turnNumberIntoAudFormat(manualEntry.debit),
+      debit: manualEntry.debit === null ? "" : formatMoney(manualEntry.debit),
       credit:
-        manualEntry.credit === null
-          ? ""
-          : turnNumberIntoAudFormat(manualEntry.credit),
+        manualEntry.credit === null ? "" : formatMoney(manualEntry.credit),
       update: isFirstLine ? "Update" : "",
       delete: isFirstLine ? "Delete" : "",
     };

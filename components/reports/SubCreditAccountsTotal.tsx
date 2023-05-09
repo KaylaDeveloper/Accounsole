@@ -1,4 +1,4 @@
-import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
+import formatMoney from "utils/formatMoney";
 
 export default function SubCreditAccountsTotal({
   title,
@@ -11,9 +11,7 @@ export default function SubCreditAccountsTotal({
     <tr>
       <td className="border px-4 py-2 font-black">{title}</td>
       <td className="border px-4 py-2 font-black"></td>
-      <td className="border px-4 py-2 font-black">
-        {turnNumberIntoAudFormat(subTotal)}
-      </td>
+      <td className="border px-4 py-2 font-black">{formatMoney(subTotal)}</td>
     </tr>
   );
 }

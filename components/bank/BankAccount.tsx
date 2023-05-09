@@ -1,6 +1,6 @@
 import axios from "axios";
 import { FormEvent, useState } from "react";
-import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
+import formatMoney from "utils/formatMoney";
 import Link from "next/link";
 import useAlert from "hooks/useAlert";
 
@@ -48,7 +48,7 @@ export default function BankAccount(props: {
       <p className="text-sm absolute top-9 whitespace-nowrap">{alert}</p>
       <p>
         {"Current Balance: "}
-        {turnNumberIntoAudFormat(bankBalance)}
+        {formatMoney(bankBalance)}
       </p>
       <Link
         href={`/bank/${props.bankAccountId}-${props.bankAccountName}?type=unreconciledTransactions`}

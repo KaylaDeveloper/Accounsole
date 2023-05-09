@@ -4,7 +4,7 @@ import useFilter from "../reactDataGrid/headerRenderer";
 import DataGrid, { Column } from "react-data-grid";
 import Link from "next/link";
 import { BankTransaction } from "services/repository/Repository";
-import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
+import formatMoney from "utils/formatMoney";
 
 export default function AllTransactions(props: {
   allBankTransactionsForSelectedAccount: BankTransaction[];
@@ -175,14 +175,9 @@ export default function AllTransactions(props: {
         id: transaction.id,
         description: transaction.description,
         date: transaction.date,
-        debit:
-          transaction.debit === null
-            ? ""
-            : turnNumberIntoAudFormat(transaction.debit),
+        debit: transaction.debit === null ? "" : formatMoney(transaction.debit),
         credit:
-          transaction.credit === null
-            ? ""
-            : turnNumberIntoAudFormat(transaction.credit),
+          transaction.credit === null ? "" : formatMoney(transaction.credit),
         reconciled: transaction.reconciled,
         details: "Details",
       };

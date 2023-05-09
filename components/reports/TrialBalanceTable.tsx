@@ -1,6 +1,6 @@
 import { AccountsWithOpeningBalances } from "services/repository/Repository";
 import { totalDebit, totalCredit } from "utils/accountsCalculation";
-import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
+import formatMoney from "utils/formatMoney";
 import TableHead from "./TableHead";
 import SubAccounts from "./SubAccounts";
 
@@ -17,10 +17,10 @@ export default function TrialBalanceTable(
         <tr className="bg-light-blue">
           <td className="text-left border px-4 py-2">Total</td>
           <td className="text-right border px-4 py-2">
-            {turnNumberIntoAudFormat(totalDebit(accountsWithBalances))}
+            {formatMoney(totalDebit(accountsWithBalances))}
           </td>
           <td className="text-right border px-4 py-2">
-            {turnNumberIntoAudFormat(totalCredit(accountsWithBalances))}
+            {formatMoney(totalCredit(accountsWithBalances))}
           </td>
         </tr>
       </tfoot>

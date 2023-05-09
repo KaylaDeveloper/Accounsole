@@ -1,6 +1,10 @@
-export default function turnNumberIntoAudFormat(number: number): string {
-  return parseFloat(number.toFixed(2)).toLocaleString("en-AU", {
+export default function formatMoney(
+  amount: number,
+  currency: string = "AUD",
+  locale: string = "en-AU"
+) {
+  return parseFloat(amount.toFixed(2)).toLocaleString(locale, {
     style: "currency",
-    currency: "AUD",
+    currency,
   });
 }

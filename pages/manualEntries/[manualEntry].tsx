@@ -12,7 +12,7 @@ import { useState } from "react";
 import useAlert from "hooks/useAlert";
 import DataGrid, { Column } from "react-data-grid";
 import "react-data-grid/lib/styles.css";
-import turnNumberIntoAudFormat from "utils/turnNumberIntoAudFormat";
+import formatMoney from "utils/formatMoney";
 import axios from "axios";
 
 interface ManualEntry extends Omit<Row, "GST"> {
@@ -171,9 +171,7 @@ export default function ManualEntries(props: {
         );
       },
       formatter: ({ row }) => (
-        <span>
-          {row.debit !== "" ? turnNumberIntoAudFormat(Number(row.debit)) : ""}
-        </span>
+        <span>{row.debit !== "" ? formatMoney(Number(row.debit)) : ""}</span>
       ),
     },
     {
@@ -193,9 +191,7 @@ export default function ManualEntries(props: {
         );
       },
       formatter: ({ row }) => (
-        <span>
-          {row.credit !== "" ? turnNumberIntoAudFormat(Number(row.credit)) : ""}
-        </span>
+        <span>{row.credit !== "" ? formatMoney(Number(row.credit)) : ""}</span>
       ),
     },
   ];
