@@ -2,6 +2,7 @@ import { test as baseTest, expect } from "@playwright/test";
 import fs from "fs";
 import path from "path";
 
+export * from "@playwright/test";
 export default function fixtures(i: number) {
   const getAccount = (i: number) => {
     return {

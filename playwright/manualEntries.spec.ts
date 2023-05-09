@@ -1,5 +1,8 @@
 /* eslint-disable testing-library/prefer-screen-queries */
-import { test, expect } from "./fixtures";
+import { expect } from "./fixtures";
+import fixtures from "./fixtures";
+
+export const test = fixtures(2);
 
 test.describe.serial("manualEntries", () => {
   test.beforeEach(async ({ page }) => {

@@ -1,6 +1,9 @@
 /* eslint-disable testing-library/prefer-screen-queries */
-import { test, expect } from "./fixtures";
+import { expect } from "./fixtures";
 import path from "path";
+import fixtures from "./fixtures";
+
+export const test = fixtures(3);
 
 test.describe.serial("reports", () => {
   test.beforeEach(async ({ page }) => {
