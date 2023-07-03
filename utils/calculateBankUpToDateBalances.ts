@@ -17,10 +17,11 @@ export default function calculateBankUpToDateBalances(
     const bankBalance = bankBalances.find(
       (bankBalance) => bankBalance.name === account.name
     );
+    
     return {
       ...account,
-      debit: account.debit ?? 0 + (bankBalance?.debit ?? 0),
-      credit: account.credit ?? 0 + (bankBalance?.credit ?? 0),
+      debit: Number(account.debit ?? 0) + Number(bankBalance?.debit ?? 0),
+      credit: Number(account.credit ?? 0) + Number(bankBalance?.credit ?? 0),
     };
   });
   return bankAccounts;

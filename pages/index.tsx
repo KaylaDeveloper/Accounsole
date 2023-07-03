@@ -219,7 +219,7 @@ export default function Home(props: {
       <UserHome
         monthlyExpenses={props.monthlyExpenses}
         monthlyIncome={props.monthlyIncome}
-        months={months}
+        months={allMonths}
       />
     </Layout>
   );
@@ -237,8 +237,8 @@ export const getServerSideProps = getDefaultServerSideProps(
 
     return {
       ...props,
-      monthlyExpenses: repository.getMonthlyExpenses(months),
-      monthlyIncome: repository.getMonthlyIncome(months),
+      monthlyExpenses: repository.getMonthlyExpenses(allMonths),
+      monthlyIncome: repository.getMonthlyIncome(allMonths),
     };
   }
 );

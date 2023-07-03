@@ -56,6 +56,7 @@ export default function Bank(props: {
             bankAccounts.map((account) => {
               const bankBalance =
                 Number(account.debit) - Number(account.credit);
+                
               return (
                 <BankAccount
                   key={account.id}
